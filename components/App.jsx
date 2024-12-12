@@ -1,69 +1,101 @@
-import React, { useEffect, useReducer, useState } from 'react'
+import React, { useEffect, useReducer, useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import vehicleConfigs from '../vehicleConfigs'
-import Header from './Header'
-import Editor from './Editor'
-import Canvas from './Canvas'
-import Actions from './Actions'
-import VehicleTitle from './VehicleTitle'
+import vehicleConfigs from '../vehicleConfigs';
+import Header from './Header';
+import Editor from './Editor';
+import Canvas from './Canvas';
+import Actions from './Actions';
+import VehicleTitle from './VehicleTitle';
+import Dynamoscomponent from './Dynamos';
 
-export default function App() {
+function Customize() {
     // Saved vehicles.
     const [savedVehicles, setSavedVehicles] = useState(() => {
-        // Get from local storage or null.
-        const localStorageVehicles = localStorage.getItem('savedVehicles')
-        return localStorageVehicles ? JSON.parse(localStorageVehicles) : { current: null }
-    })
+        const localStorageVehicles = localStorage.getItem('savedVehicles');
+        return localStorageVehicles ? JSON.parse(localStorageVehicles) : { current: null };
+    });
 
     // On saved Vehicles update.
     useEffect(() => {
-        // Update local storage.
-        localStorage.setItem('savedVehicles', JSON.stringify(savedVehicles))
-    }, [savedVehicles])
+        localStorage.setItem('savedVehicles', JSON.stringify(savedVehicles));
+    }, [savedVehicles]);
 
     // Load default vehicle from local storage (if it exists).
     const defaultVehicleConfig = () => {
-        // Get current save.
-        const defaultVehicleId = savedVehicles.current
-        return defaultVehicleId && savedVehicles[defaultVehicleId] ? savedVehicles[defaultVehicleId].config : vehicleConfigs.defaults
-    }
+        const defaultVehicleId = savedVehicles.current;
+        return defaultVehicleId && savedVehicles[defaultVehicleId]
+            ? savedVehicles[defaultVehicleId].config
+            : vehicleConfigs.defaults;
+    };
 
     // Current vehicle config.
-    const [currentVehicle, setVehicle] = useReducer((currentVehicle, newState) => ({ ...currentVehicle, ...newState }), defaultVehicleConfig())
+    const [currentVehicle, setVehicle] = useReducer(
+        (currentVehicle, newState) => ({ ...currentVehicle, ...newState }),
+        defaultVehicleConfig()
+    );
 
     // Camera.
-    const [cameraAutoRotate, setCameraAutoRotate] = useState(false)
+    const [cameraAutoRotate, setCameraAutoRotate] = useState(false);
 
     // Run once.
     useEffect(() => {
-        // Get config from URL parameters.
-        const urlParams = new URLSearchParams(window.location.search)
-        const encodedConfig = urlParams.get('config')
-        // Existing config.
+        const urlParams = new URLSearchParams(window.location.search);
+        const encodedConfig = urlParams.get('config');
         if (encodedConfig) {
-            console.log('Loading vehicle from shared url.')
-            const jsonString = decodeURIComponent(encodedConfig)
-            const config = JSON.parse(jsonString)
-            // Overwrite current vehicle from URL parameter.
-            setVehicle(config)
-            // Clear current saved vehicle.
+            console.log('Loading vehicle from shared URL.');
+            const jsonString = decodeURIComponent(encodedConfig);
+            const config = JSON.parse(jsonString);
+            setVehicle(config);
             setSavedVehicles((prevSavedVehicles) => ({
                 ...prevSavedVehicles,
                 current: null,
-            }))
-            // Clear URL parameters.
-            window.history.replaceState({}, '', window.location.pathname)
+            }));
+            window.history.replaceState({}, '', window.location.pathname);
         }
-    }, [])
+    }, []);
 
     return (
-        <div className='App'>
+        <div className="App">
             <Header>
-                <VehicleTitle savedVehicles={savedVehicles} setSavedVehicles={setSavedVehicles} setVehicle={setVehicle} />
+                <VehicleTitle
+                    savedVehicles={savedVehicles}
+                    setSavedVehicles={setSavedVehicles}
+                    setVehicle={setVehicle}
+                />
             </Header>
-            <Canvas currentVehicle={currentVehicle} setVehicle={setVehicle} cameraAutoRotate={cameraAutoRotate} />
-            <Editor isActive={true} currentVehicle={currentVehicle} setVehicle={setVehicle} cameraAutoRotate={cameraAutoRotate} setCameraAutoRotate={setCameraAutoRotate} />
-            <Actions currentVehicle={currentVehicle} savedVehicles={savedVehicles} setSavedVehicles={setSavedVehicles} />
+            <Canvas
+                currentVehicle={currentVehicle}
+                setVehicle={setVehicle}
+                cameraAutoRotate={cameraAutoRotate}
+            />
+            <Editor
+                isActive={true}
+                currentVehicle={currentVehicle}
+                setVehicle={setVehicle}
+                cameraAutoRotate={cameraAutoRotate}
+                setCameraAutoRotate={setCameraAutoRotate}
+            />
+            <Actions
+                currentVehicle={currentVehicle}
+                savedVehicles={savedVehicles}
+                setSavedVehicles={setSavedVehicles}
+            />
         </div>
-    )
+    );
+}
+
+function Home() {
+    return <Dynamoscomponent/>;
+}
+
+export default function App() {
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/customize" element={<Customize />} />
+            </Routes>
+        </Router>
+    );
 }
