@@ -36,7 +36,7 @@ function Customize() {
     );
 
     // Camera.
-    const [cameraAutoRotate, setCameraAutoRotate] = useState(false);
+    const [cameraAutoRotate, setCameraAutoRotate] = useState(true);
 
     // Run once.
     useEffect(() => {
@@ -57,13 +57,13 @@ function Customize() {
 
     return (
         <div className="App">
-            <Header>
+            {/* <Header>
                 <VehicleTitle
                     savedVehicles={savedVehicles}
                     setSavedVehicles={setSavedVehicles}
                     setVehicle={setVehicle}
                 />
-            </Header>
+            </Header> */}
             <Canvas
                 currentVehicle={currentVehicle}
                 setVehicle={setVehicle}
@@ -74,13 +74,13 @@ function Customize() {
                 currentVehicle={currentVehicle}
                 setVehicle={setVehicle}
                 cameraAutoRotate={cameraAutoRotate}
-                setCameraAutoRotate={setCameraAutoRotate}
+                // setCameraAutoRotate={setCameraAutoRotate}
             />
-            <Actions
+            {/* <Actions
                 currentVehicle={currentVehicle}
                 savedVehicles={savedVehicles}
                 setSavedVehicles={setSavedVehicles}
-            />
+            /> */}
         </div>
     );
 }

@@ -11,7 +11,7 @@ import GearIcon from '../assets/images/icons/Gear.svg'
 
 function Editor(props) {
     // Get props.
-    const { isActive, currentVehicle = { id: null }, setVehicle, cameraAutoRotate, setCameraAutoRotate } = props
+    const { isActive, currentVehicle = { id: null }, setVehicle, cameraAutoRotate } = props
 
     // Check if current vehicle has addons.
     function addonsExist() {
@@ -196,13 +196,13 @@ function Editor(props) {
             )}
 
             {/* Scene */}
-            <EditorSection title='Options' icon={<GearIcon className='icon' />}>
+            {/* <EditorSection title='Options' icon={<GearIcon className='icon' />}> */}
                 {/* Auto Rotate */}
-                <div className='field field-camera-autorotate'>
+                {/* <div className='field field-camera-autorotate'>
                     <input type='checkbox' id='camera-autorotate' checked={cameraAutoRotate} onChange={(e) => setCameraAutoRotate(e.target.checked)} />
                     <label htmlFor='camera-autorotate'>Auto Rotate</label>
                 </div>
-            </EditorSection>
+            </EditorSection> */}
         </div>
     )
 }
