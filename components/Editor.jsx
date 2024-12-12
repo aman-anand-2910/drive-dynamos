@@ -386,8 +386,8 @@ function Editor(props) {
             <h3 className="price-info">Total : <span className="price-info-val">₹{parseInt(currentVehicle.price) + parseInt(addonsPrice)}</span></h3>
            </>} 
           </div>
-          <button className="btn btn-lg btn-success" styles={{width:"100%"}}>Checkout</button>
-          {isBuyCar && <button className="btn btn-lg btn-light" styles={{width:"100%"}}>Customize Your Car</button>}
+          <button className="btn btn-lg btn-success" style={{width:"100%"}}>Checkout</button>
+          {isBuyCar && <button className="btn btn-lg btn-light" style={{width:"100%"}}>Customize Your Car</button>}
         </>
       
     </div>
