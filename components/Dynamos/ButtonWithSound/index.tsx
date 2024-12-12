@@ -33,7 +33,7 @@ const NeonButtonWithSound = ({
     <>
       <audio
         ref={audioRef}
-        src="/images/buttonClick.mp3"
+        src="../../assets/images/buttonClick.mp3"
         preload="auto"
         autoPlay
       />
