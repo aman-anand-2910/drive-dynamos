@@ -6,6 +6,7 @@ import Canvas from "./Canvas";
 import Editor from "./Editor";
 import Dynamoscomponent from "./Dynamos";
 import SpecsGrid from "./SpecsGrid";
+import Header from "./Header";
 
 function Customize({ flag }) {
 
@@ -83,13 +84,7 @@ function Customize({ flag }) {
   return (
     <div className="App">
       <div>
-        {/* <Header>
-          <VehicleTitle
-            savedVehicles={savedVehicles}
-            setSavedVehicles={setSavedVehicles}
-            setVehicle={setVehicle}
-          />
-        </Header> */}
+        <Header/>
         <Canvas
           currentVehicle={currentVehicle}
           setVehicle={setVehicle}

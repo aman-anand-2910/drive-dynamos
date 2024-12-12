@@ -1,21 +1,28 @@
-import LogoIcon from '../assets/images/icons/Logo.svg'
-import GitHubIcon from '../assets/images/icons/GitHub.svg'
+import React from "react";
+import { useLocation, Link } from "react-router-dom";
 
-function Header({ children }) {
-    return (
-        <div id='header'>
-            <h1>
-                <LogoIcon className='icon' />
-                <strong>4x4</strong>builder
-            </h1>
-            {children}
-            <div className='actions'>
-                <a target='_blank' href='https://github.com/theshanergy/4x4builder' title='GitHub'>
-                    <GitHubIcon className='icon' />
-                </a>
-            </div>
+function Navbar() {
+  const location = useLocation();
+
+  // Determine the target route and button label
+  const isOnCustomize = location.pathname === "/customize";
+  const targetRoute = isOnCustomize ? "/buy-car" : "/customize";
+  const buttonLabel = isOnCustomize ? "Buy New Car" : "Customize Your Car";
+
+  return (
+    <nav className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark" style={{zIndex:999}}>
+      <div className="container-fluid">
+        <Link to="/" className="navbar-brand">
+          Home
+        </Link>
+        <div className="d-flex">
+          <button className="btn btn-secondary" onClick={()=>{window.location.href = targetRoute;}}>
+            {buttonLabel}
+          </button>
         </div>
-    )
+      </div>
+    </nav>
+  );
 }
 
-export default Header
+export default Navbar;

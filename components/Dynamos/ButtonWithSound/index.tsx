@@ -7,6 +7,7 @@ const NeonButtonWithSound = ({
   handleNextClick,
   handleStartClick,
   handlePrevClick,
+  flag=false,
 }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const handleButtonClick = () => {
@@ -47,11 +48,15 @@ const NeonButtonWithSound = ({
           </NeonNextButton>
         </BtnContainer>
       ) : (
-        <>
+        <div
+          style={{
+            margin: flag ? "0px" : "40px",
+          }}
+        >
           <StartButton onClick={handleButtonClick}>
-            Start
+            {flag ? "Customize Your Car" : "Buy New Car"}
           </StartButton>
-        </>
+        </div>
       )}
     </>
   );
