@@ -30,8 +30,6 @@ const VideoBackground = ({ videoSrc }) => {
         scene.add(plane)
 
         return () => {
-            scene.remove(plane)
-            video.pause()
             video.src = ''
         }
     }, [scene, videoSrc])
