@@ -115,14 +115,15 @@ const vehicleConfigs = {
       }
     ],
     "wheel_offset": 0,
-    "rim": "toyota_4runner_5thgen",
+    "rim": "xd_grenade",
     "rim_color": "silver",
     "rim_color_secondary": "silver",
     "rim_diameter": 17,
     "rim_width": 10,
     "tire": "bfg_at",
     "tire_diameter": 32,
-    "spare": true
+    "spare": true,
+    "addonsPriceConfig":{}
   },
   "vehicles": {
     "toyota_4runner_5g_late": {
@@ -241,7 +242,9 @@ const vehicleConfigs = {
           "name": "Daytona Grey",
           "hex": "#123456"
         }
-      ]
+      ],
+      rim:"xd_grenade",
+       "tire": "bfg_at",
     },
     "toyota_4runner_5g": {
       "name": "Toyota 4Runner (2011-2013)",
@@ -359,7 +362,9 @@ const vehicleConfigs = {
           "name": "Daytona Grey",
           "hex": "#123456"
         }
-      ]
+      ],
+      rim:"xd_grenade",
+       "tire": "bfg_at",
     },
     "toyota_4runner_4g": {
       "name": "Toyota 4Runner (2002-2009)",
@@ -477,7 +482,9 @@ const vehicleConfigs = {
           "name": "Daytona Grey",
           "hex": "#123456"
         }
-      ]
+      ],
+        rim:"xd_grenade",
+         "tire": "bfg_at",
     },
     "toyota_4runner_3g": {
       "name": "Toyota 4Runner (1996-2002)",
@@ -538,7 +545,9 @@ const vehicleConfigs = {
             }
           }
         }
-      }
+      },
+        rim:"xd_grenade",
+         "tire": "bfg_at",
     },
     "toyota_tacoma_2g_ac": {
       "name": "Toyota Tacoma (2005-2015)",
@@ -656,7 +665,9 @@ const vehicleConfigs = {
           "name": "Daytona Grey",
           "hex": "#123456"
         }
-      ]
+      ],
+        rim:"xd_grenade",
+         "tire": "bfg_at",
     },
     "toyota_j80": {
       "name": "Toyota Land Cruiser (1990–2008)",
@@ -774,7 +785,8 @@ const vehicleConfigs = {
           "name": "Daytona Grey",
           "hex": "#123456"
         }
-      ]
+      ],
+        rim:"xd_grenade", "tire": "bfg_at",
     },
     "jeep_jku": {
       "name": "Jeep Wrangler (JKU)",
@@ -892,7 +904,9 @@ const vehicleConfigs = {
           "name": "Daytona Grey",
           "hex": "#123456"
         }
-      ]
+      ],
+        rim:"xd_grenade",
+         "tire": "bfg_at",
     },
     "jeep_yj": {
       "name": "Jeep Wrangler (YJ)",
@@ -1010,7 +1024,9 @@ const vehicleConfigs = {
           "name": "Daytona Grey",
           "hex": "#123456"
         }
-      ]
+      ],
+        rim:"xd_grenade",
+         "tire": "bfg_at",
     },
     "jeep_xj": {
       "name": "Jeep Cherokee (XJ)",
@@ -1128,7 +1144,9 @@ const vehicleConfigs = {
           "name": "Daytona Grey",
           "hex": "#123456"
         }
-      ]
+      ],
+        rim:"xd_grenade",
+         "tire": "bfg_at",
     },
     "ford_bronco_6g": {
       "name": "Ford Bronco",
@@ -1251,7 +1269,9 @@ const vehicleConfigs = {
           "name": "Daytona Grey",
           "hex": "#123456"
         }
-      ]
+      ],
+        rim:"xd_grenade",
+         "tire": "bfg_at",
     }
   },
   "wheels": {
