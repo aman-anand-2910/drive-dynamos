@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as Styles from "./styles";
-import  NeonCarousel  from "./ButtonWithSound/ImageCarousel";
+import NeonCarousel from "./ButtonWithSound/ImageCarousel";
 import NeonButtonWithSound from "./ButtonWithSound";
 
 const Dynamoscomponent = () => {
@@ -59,13 +59,13 @@ const Dynamoscomponent = () => {
       setShowButton(false);
     }
   };
-  useEffect(()=>{
-    if(flow === 5){
+  useEffect(() => {
+    if (flow === 5) {
       {
         window.location.href = "/customize";
       }
     }
-  },[flow])
+  }, [flow])
 
   const handleNextClick = () => {
     setFlow((prevFlow) => prevFlow + 1);
@@ -99,7 +99,7 @@ const Dynamoscomponent = () => {
         autoPlay
       />
       <Styles.BackgroundVideo autoPlay loop muted>
-        <source src="../../assets/images/bgvideo.mp4" type="video/mp4" />
+        <source src="../../assets/images/bgVideo1.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </Styles.BackgroundVideo>
       <Styles.Header>Let's build your car</Styles.Header>
