@@ -15,8 +15,12 @@ function Editor(props) {
     isActive,
     currentVehicle = { id: null },
     setVehicle,
+    addonsPrice,
+    isBuyCar,
+    setAddonsPrice,
     cameraAutoRotate,
   } = props;
+
 
   // Check if current vehicle has addons.
   function addonsExist() {
@@ -40,6 +44,67 @@ function Editor(props) {
     return groups;
   };
 
+
+  const GroupedImageSelect = ({ value, itemList, groupBy, onChange, ...restProps }) => {
+  // Get list grouped by type.
+  const groupedList = groupObjectByKey(itemList, groupBy);
+
+  return (
+    <div className="grouped-image-select items-grid" {...restProps}>
+      {Object.keys(groupedList).map((type) => (
+        <div key={type} className="group">
+          <div className="items-grid">
+            {groupedList[type].map((id) => {
+              const item = itemList[id];
+              if (!item) return null;
+
+              return (
+                <div
+                  key={id}
+                  onClick={() => onChange({ target: { value: id,price: item.price } })} // Simulate a change event
+                  className={`item ${value === id ? "selected" : ""}`}
+                >
+                  <img
+                    src={item.img}
+                    alt={item.name}
+                    className="rim-image"
+                    width="60"
+                    height="60"
+                  />
+                  <p styles={{margin:0}}>{type}</p>  <span>₹{item.price}</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+const GroupedColorSelect = ({ value, itemList, onChange, ...restProps }) => {
+  return (
+    <div className="grouped-color-select items-grid" {...restProps}>
+      {itemList.map((item, index) => (
+        <div
+          key={index}
+          onClick={() => onChange({ target: { value: item.hex, name: item.name } })} // Simulate a change event
+          className={`item ${value === item.hex ? "selected" : ""}`}
+        >
+          <span
+            className="color-box"
+            style={{ backgroundColor: item.hex }}
+            title={item.name}
+          />
+          <p>{item.name}</p>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+
+
   // Select list grouped by provided type.
   const GroupedSelect = ({ value, itemList, groupBy, ...restProps }) => {
     // Get list sorted by type.
@@ -51,7 +116,7 @@ function Editor(props) {
           <optgroup key={type} label={type}>
             {groupedList[type].map((id) => (
               <option key={id} value={id}>
-                {itemList[id].name}
+                {itemList[id].name + " " + "₹" + itemList[id].price} 
               </option>
             ))}
           </optgroup>
@@ -99,7 +164,16 @@ function Editor(props) {
         </div>
 
         {/* Paint */}
-        <div className="field field-paint">
+        {isBuyCar ? <>
+            <GroupedColorSelect
+            value={currentVehicle.color}
+            itemList={vehicleConfigs.vehicles[currentVehicle.id].colors}
+            groupBy={"make"}
+            onChange={(e) => setVehicle({ color: e.target.value })}
+          />
+        
+        </>: 
+        (<><div className="field field-paint">
           <div className="field field-vehicle-color">
             <label>Paint</label>
             <input
@@ -109,7 +183,6 @@ function Editor(props) {
             />
           </div>
 
-          {/* Roughness */}
           <div className="field field-vehicle-roughness">
             <label style={{ visibility: "hidden" }}>Finish</label>
             <select
@@ -123,7 +196,7 @@ function Editor(props) {
           </div>
         </div>
 
-        {/* Vehicle Lift */}
+
         <div className="field field-vehicle-lift">
           <label>Lift</label>
           <InchRangeSelect
@@ -133,9 +206,9 @@ function Editor(props) {
             onChange={(e) => setVehicle({ lift: e.target.value })}
           />
         </div>
-
+        </>)}
         {/* Wheel Offset */}
-        <div className="field field-wheel-offset">
+        {/* <div className="field field-wheel-offset">
           <label>Offset</label>
           <input
             type="range"
@@ -145,15 +218,14 @@ function Editor(props) {
             value={currentVehicle.wheel_offset || 0}
             onChange={(e) => setVehicle({ wheel_offset: e.target.value })}
           />
-        </div>
+        </div> */}
       </EditorSection>
 
       {/* Rims */}
+      {!isBuyCar && <>
       <EditorSection title="Rims" icon={<RimIcon className="icon" />}>
-        {/* Rim */}
         <div className="field field-rim">
-          <label>Type</label>
-          <GroupedSelect
+          <GroupedImageSelect
             value={currentVehicle.rim}
             itemList={vehicleConfigs.wheels.rims}
             groupBy={"make"}
@@ -213,13 +285,12 @@ function Editor(props) {
         </div>
       </EditorSection>
 
-      {/* Tires */}
       <EditorSection title="Tires" icon={<TireIcon className="icon" />}>
         <div className="field field-tire-type">
           {/* Tire */}
           <div className="field field-tire-type">
             <label>Type</label>
-            <GroupedSelect
+            <GroupedImageSelect
               value={currentVehicle.tire}
               itemList={vehicleConfigs.wheels.tires}
               groupBy={"make"}
@@ -227,7 +298,6 @@ function Editor(props) {
             />
           </div>
 
-          {/* Tire Size */}
           <div className="field field-tire-size">
             <label>Size</label>
             <InchRangeSelect
@@ -240,7 +310,6 @@ function Editor(props) {
         </div>
       </EditorSection>
 
-      {/* Addons */}
       {addonsExist() && (
         <EditorSection title="Addons" icon={<ToolIcon className="icon" />}>
           {Object.keys(vehicleConfigs.vehicles[currentVehicle.id].addons).map(
@@ -282,6 +351,7 @@ function Editor(props) {
             )
           )}
         </EditorSection>
+    
       )}
 
       {/* Scene */}
@@ -292,6 +362,9 @@ function Editor(props) {
                     <label htmlFor='camera-autorotate'>Auto Rotate</label>
                 </div>
             </EditorSection> */}
+
+       <div className="addonPrice section"><h4 className="section-header">Addons : ₹{addonsPrice}</h4></div>    
+       </>}
     </div>
   );
 }

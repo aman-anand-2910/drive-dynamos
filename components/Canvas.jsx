@@ -7,10 +7,6 @@ import {
 } from "@react-three/drei";
 import {
   DefaultLoadingManager,
-  TextureLoader,
-  PlaneGeometry,
-  MeshBasicMaterial,
-  Mesh,
 } from "three";
 import Environment from "./Environment";
 import Loader from "./Loader";
@@ -41,6 +37,7 @@ const ThreeCanvas = ({ currentVehicle, setVehicle, cameraAutoRotate }) => {
   return (
     <div id="vehicle">
       {!isLoaded && <Loader />}
+      <div id="background-img"></div>
       <Canvas>
         <PerformanceMonitor onDecline={() => setPerformanceDegraded(true)} />
         <OrbitControls
@@ -54,7 +51,7 @@ const ThreeCanvas = ({ currentVehicle, setVehicle, cameraAutoRotate }) => {
           dampingFactor={0.025}
         />
 
-        <PerspectiveCamera makeDefault fov={30} position={[-18, 3, 13]}>
+        <PerspectiveCamera makeDefault fov={30} position={[-58, 3, 13]}>
           <pointLight position={[4, 2, 4]} intensity={0.75} />
         </PerspectiveCamera>
 

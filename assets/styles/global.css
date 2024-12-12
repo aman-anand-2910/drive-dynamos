@@ -254,7 +254,7 @@ input[type='color']::-webkit-color-swatch {
 
 @media (min-aspect-ratio: 5/4) {
     #editor {
-        width: 240px;
+        width: 300px;
         top: 0;
         left: -240px;
         z-index: 9;
@@ -267,14 +267,15 @@ input[type='color']::-webkit-color-swatch {
         vertical-align: bottom;
     }
 }
-
 /* vehicle */
 #vehicle {
     position: absolute;
     top: 0;
     bottom: 50%;
-    width: 100%;
+    width: 80%;
+    left: 300px;
     overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 #vehicle canvas {
     outline: none !important;
@@ -387,4 +388,96 @@ input[type='color']::-webkit-color-swatch {
 #loader .spinner .text .asset {
     color: #bbb;
     font-size: 12px;
+}
+
+.grouped-image-select {
+    display: flex;
+    flex-direction: column;
+    gap: 5px 10px 0 ;
+
+}
+
+.grouped-image-select .group {
+
+}
+
+.grouped-image-select .group h4 {
+    margin-bottom: 5px;
+}
+
+.grouped-image-select.items-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 items per row */
+    gap: 0px;
+}
+
+.grouped-image-select .item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+    transition: border 0.2s ease;
+        max-width: 86px;
+}
+
+.grouped-image-select .item.selected {
+    background-color: #f0f8ff56;
+}
+
+.grouped-image-select .item img {
+  
+}
+
+.grouped-image-select .item p {
+    margin-top: 5px;
+    font-size: 14px;
+    text-align: center;
+}
+
+#addddonPrice{
+    position: fixed;
+    bottom: 0;
+    height: 50px;
+}
+
+.color-box{
+    height:40px;
+    width:40px;
+    border-radius: 50%;
+}
+
+
+.grouped-color-select {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.grouped-color-select .item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: border 0.2s ease;
+    padding: 5px 0;
+}
+
+.grouped-color-select .item.selected {
+    /* border: 2px solid #0077be; */
+    /* Highlight selected color */
+    background-color: #333;
+}
+
+.grouped-color-select .color-box {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-bottom: 5px;
+}
+.grouped-color-select p{
+    margin: auto;
+    width:min-content;
 }

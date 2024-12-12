@@ -9,12 +9,15 @@ import Actions from './Actions';
 import VehicleTitle from './VehicleTitle';
 import Dynamoscomponent from './Dynamos';
 
-function Customize() {
+function Customize({flag}) {
+    console.log(flag);
     // Saved vehicles.
     const [savedVehicles, setSavedVehicles] = useState(() => {
         const localStorageVehicles = localStorage.getItem('savedVehicles');
         return localStorageVehicles ? JSON.parse(localStorageVehicles) : { current: null };
     });
+
+    const[addonsPrice, setAddonsPrice] = useState(0);
 
     // On saved Vehicles update.
     useEffect(() => {
@@ -70,6 +73,9 @@ function Customize() {
                 cameraAutoRotate={cameraAutoRotate}
             />
             <Editor
+                addonsPrice={addonsPrice}
+                isBuyCar={flag}
+                setAddonsPrice={setAddonsPrice}
                 isActive={true}
                 currentVehicle={currentVehicle}
                 setVehicle={setVehicle}
@@ -94,6 +100,7 @@ export default function App() {
         <Router>
             <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/buy-car" element={<Customize flag={true}/>} />
                 <Route path="/customize" element={<Customize />} />
             </Routes>
         </Router>
