@@ -8,7 +8,7 @@ import Dynamoscomponent from "./Dynamos";
 import SpecsGrid from "./SpecsGrid";
 
 function Customize({ flag }) {
-  console.log(flag);
+
   // Saved vehicles.
   const [savedVehicles, setSavedVehicles] = useState(() => {
     const localStorageVehicles = localStorage.getItem("savedVehicles");
@@ -17,7 +17,7 @@ function Customize({ flag }) {
       : { current: null };
   });
 
-  const [addonsPrice, setAddonsPrice] = useState(0);
+  const [addonsPriceConfig, setAddonsPriceConfig] = useState({});
 
   // On saved Vehicles update.
   useEffect(() => {
@@ -34,9 +34,31 @@ function Customize({ flag }) {
 
   // Current vehicle config.
   const [currentVehicle, setVehicle] = useReducer(
-    (currentVehicle, newState) => ({ ...currentVehicle, ...newState }),
-    defaultVehicleConfig()
-  );
+  (currentVehicle, newState) => {
+    const updatedVehicle = { ...currentVehicle, ...newState };
+    const selectedRim = updatedVehicle.rim;
+    const selectedTyre = updatedVehicle.tire;
+    console.log(vehicleConfigs.vehicles[updatedVehicle.id].rim, selectedRim);
+    let rimPrice = 0;
+    let tyrePrice = 0;
+    if(selectedRim === vehicleConfigs.vehicles[updatedVehicle.id].rim) rimPrice = 0;
+    else{
+        rimPrice = vehicleConfigs.wheels.rims[selectedRim].price;
+    }
+    if(selectedTyre === vehicleConfigs.vehicles[updatedVehicle.id].tire) tyrePrice = 0;
+    else{
+        tyrePrice = vehicleConfigs.wheels.tires[selectedTyre].price;
+    }
+    const addonPriceCopy = {...addonsPriceConfig};
+    addonPriceCopy.rim = vehicleConfigs.wheels.rims[selectedRim];
+    addonPriceCopy.tire = vehicleConfigs.wheels.tires[selectedTyre];
+    addonPriceCopy.rim.price = rimPrice;
+    addonPriceCopy.tire.price = tyrePrice;
+    setAddonsPriceConfig(addonPriceCopy);
+    return updatedVehicle;
+  },
+  defaultVehicleConfig()
+);
 
   // Camera.
   const [cameraAutoRotate, setCameraAutoRotate] = useState(true);
@@ -75,9 +97,9 @@ function Customize({ flag }) {
           isBuyCar={flag}
         />
         <Editor
-          addonsPrice={addonsPrice}
+          addonsPriceConfig={addonsPriceConfig}
           isBuyCar={flag}
-          setAddonsPrice={setAddonsPrice}
+          setAddonsPriceConfig={setAddonsPriceConfig}
           isActive={true}
           currentVehicle={currentVehicle}
           setVehicle={setVehicle}
@@ -87,10 +109,11 @@ function Customize({ flag }) {
       {flag && (
         <div
           style={{
-            width: "100%",
+            width: "calc(100vw - 300px)",
             zIndex: 10,
             position: "absolute",
             top: "65%",
+            right:0
           }}
         >
           <SpecsGrid />

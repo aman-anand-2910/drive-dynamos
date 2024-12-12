@@ -15,11 +15,13 @@ function Editor(props) {
     isActive,
     currentVehicle = { id: null },
     setVehicle,
-    addonsPrice,
+    addonsPriceConfig,
     isBuyCar,
-    setAddonsPrice,
+    setAddonsPriceConfig,
     cameraAutoRotate,
   } = props;
+  const addonsPrice = Object.values(addonsPriceConfig).reduce((total,val)=>val.price+total,0);
+
 
   // Check if current vehicle has addons.
   function addonsExist() {
@@ -155,7 +157,6 @@ function Editor(props) {
     <div
       id="editor"
       className={isActive ? "visible" : ""}
-      style={isBuyCar ? { height: "80%" } : {}}
     >
       {/* Vehicle */}
       <EditorSection
@@ -303,7 +304,6 @@ function Editor(props) {
             <div className="field field-tire-type">
               {/* Tire */}
               <div className="field field-tire-type">
-                <label>Type</label>
                 <GroupedImageSelect
                   value={currentVehicle.tire}
                   itemList={vehicleConfigs.wheels.tires}
@@ -369,7 +369,7 @@ function Editor(props) {
               ))}
             </EditorSection>
           )}
-
+        </>)}   
           {/* Scene */}
           {/* <EditorSection title='Options' icon={<GearIcon className='icon' />}> */}
           {/* Auto Rotate */}
@@ -378,12 +378,18 @@ function Editor(props) {
                     <label htmlFor='camera-autorotate'>Auto Rotate</label>
                 </div>
             </EditorSection> */}
-
-          <div className="addonPrice section">
-            <h4 className="section-header">Addons : ₹{addonsPrice}</h4>
+        <>
+          <div className="addonPrice section card border-info">
+            <h5 className="price-info">Car Price : <span className="price-info-val">₹{currentVehicle.price}</span></h5>
+           {!isBuyCar && <>
+            <h5 className="price-info">Addons : <span className="price-info-val">₹{addonsPrice}</span></h5>
+            <h3 className="price-info">Total : <span className="price-info-val">₹{parseInt(currentVehicle.price) + parseInt(addonsPrice)}</span></h3>
+           </>} 
           </div>
+          <button className="btn btn-lg btn-success" styles={{width:"100%"}}>Checkout</button>
+          {isBuyCar && <button className="btn btn-lg btn-light" styles={{width:"100%"}}>Customize Your Car</button>}
         </>
-      )}
+      
     </div>
   );
 }

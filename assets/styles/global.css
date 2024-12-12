@@ -481,3 +481,17 @@ input[type='color']::-webkit-color-swatch {
     margin: auto;
     width:min-content;
 }
+
+.addonPrice{
+    padding: 10px;
+   
+}
+.addonPrice .price-info{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding: 0 5px;
+}
+.addonPrice .price-info-val{
+
+}
