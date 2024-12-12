@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import * as Styles from "./styles";
 import NeonCarousel from "./ButtonWithSound/ImageCarousel";
 import NeonButtonWithSound from "./ButtonWithSound";
+import Navbar from "../Header";
 
 const Dynamoscomponent = () => {
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -90,94 +91,107 @@ const Dynamoscomponent = () => {
     };
   }, []);
   return (
-    <Styles.PageWrapper isZoomed={isZoomed}>
-      <audio
-        ref={bgAudioRef}
-        src="../../assets/images/bgsound.mp3"
-        loop
-        preload="auto"
-        autoPlay
-      />
-      <Styles.BackgroundVideo autoPlay loop muted>
-        <source src="../../assets/images/bgVideo1.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </Styles.BackgroundVideo>
-      <Styles.Header>Let's build your car</Styles.Header>
-      {showButton && (
-        <NeonButtonWithSound
-          showButton={showButton}
-          handleNextClick={null}
-          handleStartClick={handleStartClick}
+    <>
+      {!showButton && flow >= 1 && flow <= 4 && <Navbar />}
+      <Styles.PageWrapper isZoomed={isZoomed}>
+        <audio
+          ref={bgAudioRef}
+          src="../../assets/images/bgsound.mp3"
+          loop
+          preload="auto"
+          autoPlay
         />
-      )}
-      {!showButton && flow === 1 && (
-        <Styles.SliderContainer ref={sliderRef}>
-          <Styles.HeaderQuestion>Select Your Budget</Styles.HeaderQuestion>
-          <Styles.BudgetValue>
-            within ₹{(budget / 100000).toFixed(0)} Lakhs
-          </Styles.BudgetValue>
-          <Styles.Slider
-            type="range"
-            min={300000}
-            max={10000000}
-            step={100000}
-            value={budget}
-            onChange={handleSliderChange}
+        <Styles.BackgroundVideo autoPlay loop muted>
+          <source src="../../assets/images/bgVideo1.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </Styles.BackgroundVideo>
+        <Styles.Header>Let's build your car</Styles.Header>
+        {showButton && (
+          <Styles.BtnContainer>
+            <NeonButtonWithSound
+              showButton={showButton}
+              handleNextClick={null}
+              handleStartClick={handleStartClick}
+            />
+            <NeonButtonWithSound
+              showButton={showButton}
+              handleNextClick={null}
+              handleStartClick={()=>{window.location.href = "/customize";}}
+              flag={true}
+            />
+          </Styles.BtnContainer>
+        )}
+        {!showButton && flow === 1 && (
+          <Styles.SliderContainer ref={sliderRef}>
+            <Styles.HeaderQuestion>Select Your Budget</Styles.HeaderQuestion>
+            <Styles.BudgetValue>
+              within ₹{(budget / 100000).toFixed(0)} Lakhs
+            </Styles.BudgetValue>
+            <Styles.Slider
+              type="range"
+              min={300000}
+              max={10000000}
+              step={100000}
+              value={budget}
+              onChange={handleSliderChange}
+            />
+          </Styles.SliderContainer>
+        )}
+
+        {!showButton && flow === 2 && (
+          <Styles.SliderContainer ref={sliderRef}>
+            <Styles.HeaderQuestion>Select the Body Type</Styles.HeaderQuestion>
+            <div style={{ textAlign: "center", padding: "20px" }}>
+              <NeonCarousel
+                images={bodyTypeUrls}
+                setBodyType={setBodyType}
+                setTransmission={setTransmission}
+                setFuelType={setFuelType}
+              />
+            </div>
+          </Styles.SliderContainer>
+        )}
+
+        {!showButton && flow === 3 && (
+          <Styles.SliderContainer ref={sliderRef}>
+            <Styles.HeaderQuestion>
+              Select the transmission
+            </Styles.HeaderQuestion>
+            <div style={{ textAlign: "center", padding: "20px" }}>
+              <NeonCarousel
+                images={transmissionUrls}
+                setBodyType={setBodyType}
+                setTransmission={setTransmission}
+                setFuelType={setFuelType}
+              />
+            </div>
+          </Styles.SliderContainer>
+        )}
+
+        {!showButton && flow === 4 && (
+          <Styles.SliderContainer ref={sliderRef}>
+            <Styles.HeaderQuestion>Select the fuel type</Styles.HeaderQuestion>
+            <div style={{ textAlign: "center", padding: "20px" }}>
+              <NeonCarousel
+                images={fuelUrls}
+                setBodyType={setBodyType}
+                setTransmission={setTransmission}
+                setFuelType={setFuelType}
+              />
+            </div>
+          </Styles.SliderContainer>
+        )}
+
+        {!showButton && flow <= 4 && (
+          <NeonButtonWithSound
+            showButton={showButton}
+            handleNextClick={handleNextClick}
+            handleStartClick={null}
+            handlePrevClick={handlePrevClick}
           />
-        </Styles.SliderContainer>
-      )}
-
-      {!showButton && flow === 2 && (
-        <Styles.SliderContainer ref={sliderRef}>
-          <Styles.HeaderQuestion>Select the Body Type</Styles.HeaderQuestion>
-          <div style={{ textAlign: "center", padding: "20px" }}>
-            <NeonCarousel
-              images={bodyTypeUrls}
-              setBodyType={setBodyType}
-              setTransmission={setTransmission}
-              setFuelType={setFuelType}
-            />
-          </div>
-        </Styles.SliderContainer>
-      )}
-
-      {!showButton && flow === 3 && (
-        <Styles.SliderContainer ref={sliderRef}>
-          <Styles.HeaderQuestion>Select the transmission</Styles.HeaderQuestion>
-          <div style={{ textAlign: "center", padding: "20px" }}>
-            <NeonCarousel
-              images={transmissionUrls}
-              setBodyType={setBodyType}
-              setTransmission={setTransmission}
-              setFuelType={setFuelType}
-            />
-          </div>
-        </Styles.SliderContainer>
-      )}
-
-      {!showButton && flow === 4 && (
-        <Styles.SliderContainer ref={sliderRef}>
-          <Styles.HeaderQuestion>Select the fuel type</Styles.HeaderQuestion>
-          <div style={{ textAlign: "center", padding: "20px" }}>
-            <NeonCarousel
-              images={fuelUrls}
-              setBodyType={setBodyType}
-              setTransmission={setTransmission}
-              setFuelType={setFuelType}
-            />
-          </div>
-        </Styles.SliderContainer>
-      )}
-
-      {!showButton && flow <= 4 && (
-        <NeonButtonWithSound
-          showButton={showButton}
-          handleNextClick={handleNextClick}
-          handleStartClick={null}
-          handlePrevClick={handlePrevClick}
-        />
-      )}
-    </Styles.PageWrapper>
+        )}
+      </Styles.PageWrapper>
+    </>
   );
 };
 
