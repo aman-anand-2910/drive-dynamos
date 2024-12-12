@@ -5,16 +5,19 @@ import {
   PerspectiveCamera,
   PerformanceMonitor,
 } from "@react-three/drei";
-import {
-  DefaultLoadingManager,
-} from "three";
+import { DefaultLoadingManager } from "three";
 import Environment from "./Environment";
 import Loader from "./Loader";
 import Vehicle from "./Vehicle";
 import Screenshot from "./Screenshot";
 import * as Styles from "../components/Dynamos/styles";
 
-const ThreeCanvas = ({ currentVehicle, setVehicle, cameraAutoRotate }) => {
+const ThreeCanvas = ({
+  currentVehicle,
+  setVehicle,
+  cameraAutoRotate,
+  isBuyCar,
+}) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [performanceDegraded, setPerformanceDegraded] = useState(false);
 
@@ -35,7 +38,7 @@ const ThreeCanvas = ({ currentVehicle, setVehicle, cameraAutoRotate }) => {
   }, []);
 
   return (
-    <div id="vehicle">
+    <div id="vehicle" style={isBuyCar ? { height: "80%" } : {}}>
       {!isLoaded && <Loader />}
       <div id="background-img"></div>
       <Canvas>
@@ -51,7 +54,7 @@ const ThreeCanvas = ({ currentVehicle, setVehicle, cameraAutoRotate }) => {
           dampingFactor={0.025}
         />
 
-        <PerspectiveCamera makeDefault fov={30} position={[-58, 3, 13]}>
+        <PerspectiveCamera makeDefault fov={24} position={[-58, 3, 13]}>
           <pointLight position={[4, 2, 4]} intensity={0.75} />
         </PerspectiveCamera>
 
