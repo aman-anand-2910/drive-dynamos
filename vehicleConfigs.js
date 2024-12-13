@@ -61,12 +61,12 @@ const vehicleConfigs = {
       },
       {
         name: "Comfort",
-        value: "23",
+        value: "53",
         type: "Bar",
       },
       {
         name: "Mileage",
-        value: "88",
+        value: "24 kmpl",
         type: "Text",
       },
     ],
@@ -191,17 +191,17 @@ const vehicleConfigs = {
       specs: [
         {
           name: "Power",
-          value: "88",
+          value: "56",
           type: "Bar",
         },
         {
           name: "Comfort",
-          value: "23",
+          value: "79",
           type: "Bar",
         },
         {
           name: "Mileage",
-          value: "88",
+          value: "16kmpl",
           type: "Text",
         },
       ],
@@ -317,17 +317,17 @@ const vehicleConfigs = {
       specs: [
         {
           name: "Power",
-          value: "88",
+          value: "59",
           type: "Bar",
         },
         {
           name: "Comfort",
-          value: "23",
+          value: "81",
           type: "Bar",
         },
         {
           name: "Mileage",
-          value: "88",
+          value: "27kmpl",
           type: "Text",
         },
       ],
@@ -448,12 +448,12 @@ const vehicleConfigs = {
         },
         {
           name: "Comfort",
-          value: "23",
+          value: "70",
           type: "Bar",
         },
         {
           name: "Mileage",
-          value: "88",
+          value: "21kmpl",
           type: "Text",
         },
       ],
@@ -576,17 +576,17 @@ const vehicleConfigs = {
       specs: [
         {
           name: "Power",
-          value: "88",
+          value: "76",
           type: "Bar",
         },
         {
           name: "Comfort",
-          value: "23",
+          value: "67",
           type: "Bar",
         },
         {
           name: "Mileage",
-          value: "88",
+          value: "28kmpl",
           type: "Text",
         },
       ],
@@ -700,17 +700,17 @@ const vehicleConfigs = {
       specs: [
         {
           name: "Power",
-          value: "88",
+          value: "55",
           type: "Bar",
         },
         {
           name: "Comfort",
-          value: "23",
+          value: "91",
           type: "Bar",
         },
         {
           name: "Mileage",
-          value: "88",
+          value: "13kmpl",
           type: "Text",
         },
       ],
@@ -826,17 +826,17 @@ const vehicleConfigs = {
       specs: [
         {
           name: "Power",
-          value: "88",
+          value: "83",
           type: "Bar",
         },
         {
           name: "Comfort",
-          value: "23",
+          value: "89",
           type: "Bar",
         },
         {
           name: "Mileage",
-          value: "88",
+          value: "19kmpl",
           type: "Text",
         },
       ],
@@ -952,17 +952,17 @@ const vehicleConfigs = {
       specs: [
         {
           name: "Power",
-          value: "88",
+          value: "77",
           type: "Bar",
         },
         {
           name: "Comfort",
-          value: "23",
+          value: "56",
           type: "Bar",
         },
         {
           name: "Mileage",
-          value: "88",
+          value: "26kmpl",
           type: "Text",
         },
       ],
@@ -1078,17 +1078,17 @@ const vehicleConfigs = {
       specs: [
         {
           name: "Power",
-          value: "88",
+          value: "91",
           type: "Bar",
         },
         {
           name: "Comfort",
-          value: "23",
+          value: "88",
           type: "Bar",
         },
         {
           name: "Mileage",
-          value: "88",
+          value: "21kmpl",
           type: "Text",
         },
       ],
@@ -1204,17 +1204,17 @@ const vehicleConfigs = {
       specs: [
         {
           name: "Power",
-          value: "88",
+          value: "80",
           type: "Bar",
         },
         {
           name: "Comfort",
-          value: "23",
+          value: "73",
           type: "Bar",
         },
         {
           name: "Mileage",
-          value: "88",
+          value: "12kmpl",
           type: "Text",
         },
       ],
@@ -1331,17 +1331,17 @@ const vehicleConfigs = {
       specs: [
         {
           name: "Power",
-          value: "88",
+          value: "46",
           type: "Bar",
         },
         {
           name: "Comfort",
-          value: "23",
+          value: "95",
           type: "Bar",
         },
         {
           name: "Mileage",
-          value: "88",
+          value: "23kmpl",
           type: "Text",
         },
       ],
