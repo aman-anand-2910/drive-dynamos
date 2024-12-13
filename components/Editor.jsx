@@ -167,9 +167,9 @@ function Editor(props) {
       >
         {/* Vehicle */}
 
-        <div class="section form-switch" style={{margin: "10px"}}>
-                      <input class="form-check-input" type="checkbox" id='camera-autorotate' checked={cameraAutoRotate} onChange={(e) => setCameraAutoRotate(e.target.checked)}/>
-                      <label class="form-check-label" for="flexSwitchCheckChecked">360 View</label>
+        <div className="section form-switch" style={{margin: "10px"}}>
+                      <input className="form-check-input" type="checkbox" id='camera-autorotate' checked={cameraAutoRotate} onChange={(e) => setCameraAutoRotate(e.target.checked)}/>
+                      <label className="form-check-label" for="flexSwitchCheckChecked">360 View</label>
         </div>   
         <div className="field field-vehicle">
           <label>Model</label>
@@ -177,7 +177,12 @@ function Editor(props) {
             value={currentVehicle.id}
             itemList={vehicleConfigs.vehicles}
             groupBy={"make"}
-            onChange={(e) => setVehicle({ id: e.target.value })}
+            onChange={(e) => {
+                const selectedId = e.target.value;
+                const selectedVehicle = vehicleConfigs.vehicles[selectedId];
+                const updatedPrice = selectedVehicle?.price || 0; // Fetch the new price
+                setVehicle({ id: selectedId, price: updatedPrice });
+            }}
           />
         </div>
 

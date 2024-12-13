@@ -41,23 +41,10 @@ function Customize({ flag }) {
       : vehicleConfigs.defaults;
   };
 
-  // Current vehicle config.
-  const [currentVehicle, setVehicle] = useReducer(
-  (currentVehicle, newState) => {
-    let updatedVehicle = {...currentVehicle};
-    if(!newState.id) {
-        updatedVehicle = {...currentVehicle, ...newState};
-    }
-    else{
-        updatedVehicle = {...currentVehicle, ...vehicleConfigs.vehicles[newState.id]};
-    }
-     return updatedVehicle;
-    
-  },
-  defaultVehicleConfig()
-);
+const [currentVehicle, setVehicle] = useReducer((currentVehicle, newState) => ({ ...currentVehicle, ...newState}), defaultVehicleConfig());
 
 useEffect(()=>{
+    console.log(currentVehicle)
     const selectedRim = currentVehicle.rim;
     const selectedTyre = currentVehicle.tire;
     let rimPrice = 0;
@@ -102,9 +89,9 @@ useEffect(()=>{
     return <>
         <div id="carRegistrationForm">
             <fieldset>
-                <label for="exampleInputEmail1" class="form-label mt-6" style={{color: "#32fbe2"}}>Enter Vehicle Registration Number</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" value={regNo} onChange={(e)=> setRegNo(e.target.value)}  placeholder="Registration Number"/>
-                <button class="btn btn-light btn-lg" onClick={()=>{setSubmitRegNo(true)}}>Submit</button>
+                <label for="exampleInputEmail1" className="form-label mt-6" style={{color: "#32fbe2"}}>Enter Vehicle Registration Number</label>
+                <input type="text" className="form-control" id="exampleInputEmail1" value={regNo} onChange={(e)=> setRegNo(e.target.value)}  placeholder="Registration Number"/>
+                <button className="btn btn-light btn-lg" onClick={()=>{setSubmitRegNo(true)}}>Submit</button>
             </fieldset>
         </div>
     </>
