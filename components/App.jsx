@@ -44,17 +44,29 @@ function Customize({ flag }) {
   // Current vehicle config.
   const [currentVehicle, setVehicle] = useReducer(
   (currentVehicle, newState) => {
-    const updatedVehicle = { ...currentVehicle, ...newState };
-    const selectedRim = updatedVehicle.rim;
-    const selectedTyre = updatedVehicle.tire;
-    console.log(vehicleConfigs.vehicles[updatedVehicle.id].rim, selectedRim);
+    let updatedVehicle = {...currentVehicle};
+    if(!newState.id) {
+        updatedVehicle = {...currentVehicle, ...newState};
+    }
+    else{
+        updatedVehicle = {...currentVehicle, ...vehicleConfigs.vehicles[newState.id]};
+    }
+     return updatedVehicle;
+    
+  },
+  defaultVehicleConfig()
+);
+
+useEffect(()=>{
+    const selectedRim = currentVehicle.rim;
+    const selectedTyre = currentVehicle.tire;
     let rimPrice = 0;
     let tyrePrice = 0;
-    if(selectedRim === vehicleConfigs.vehicles[updatedVehicle.id].rim) rimPrice = 0;
+    if(selectedRim === vehicleConfigs.vehicles[currentVehicle.id].rim) rimPrice = 0;
     else{
         rimPrice = vehicleConfigs.wheels.rims[selectedRim].price;
     }
-    if(selectedTyre === vehicleConfigs.vehicles[updatedVehicle.id].tire) tyrePrice = 0;
+    if(selectedTyre === vehicleConfigs.vehicles[currentVehicle.id].tire) tyrePrice = 0;
     else{
         tyrePrice = vehicleConfigs.wheels.tires[selectedTyre].price;
     }
@@ -64,10 +76,7 @@ function Customize({ flag }) {
     addonPriceCopy.rim.price = rimPrice;
     addonPriceCopy.tire.price = tyrePrice;
     setAddonsPriceConfig(addonPriceCopy);
-    return updatedVehicle;
-  },
-  defaultVehicleConfig()
-);
+},[currentVehicle])
 
   // Camera.
   const [cameraAutoRotate, setCameraAutoRotate] = useState(false);
