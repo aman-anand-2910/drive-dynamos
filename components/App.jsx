@@ -84,7 +84,8 @@ function Customize({ flag }) {
   return (
     <div className="App">
       <div>
-        <Header/>
+        <Header   cameraAutoRotate={cameraAutoRotate}
+          setCameraAutoRotate={setCameraAutoRotate}/>
         <Canvas
           currentVehicle={currentVehicle}
           setVehicle={setVehicle}
@@ -98,8 +99,7 @@ function Customize({ flag }) {
           isActive={true}
           currentVehicle={currentVehicle}
           setVehicle={setVehicle}
-          cameraAutoRotate={cameraAutoRotate}
-          setCameraAutoRotate={setCameraAutoRotate}
+        
         />
       </div>
       {flag && (
