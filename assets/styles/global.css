@@ -495,3 +495,11 @@ input[type='color']::-webkit-color-swatch {
 .addonPrice .price-info-val{
 
 }
+
+.addonPriceSection{
+    position: sticky;
+    bottom:0;
+    width: 300px;
+    padding: 5px;
+    background-color: #2a2828;
+}

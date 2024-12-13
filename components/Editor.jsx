@@ -18,6 +18,7 @@ function Editor(props) {
     addonsPriceConfig,
     isBuyCar,
     setAddonsPriceConfig,
+    setCameraAutoRotate,
     cameraAutoRotate,
   } = props;
   const addonsPrice = Object.values(addonsPriceConfig).reduce((total,val)=>val.price+total,0);
@@ -376,10 +377,15 @@ function Editor(props) {
           {/* <div className='field field-camera-autorotate'>
                     <input type='checkbox' id='camera-autorotate' checked={cameraAutoRotate} onChange={(e) => setCameraAutoRotate(e.target.checked)} />
                     <label htmlFor='camera-autorotate'>Auto Rotate</label>
-                </div>
-            </EditorSection> */}
-        <>
-          <div className="addonPrice section card border-info">
+                </div> */}
+            <div class="section form-switch" style={{margin: "10px"}}>
+                      <input class="form-check-input" type="checkbox" id='camera-autorotate' checked={cameraAutoRotate} onChange={(e) => setCameraAutoRotate(e.target.checked)}/>
+                      <label class="form-check-label" for="flexSwitchCheckChecked">Auto Rotate</label>
+            </div>                
+            {/* </EditorSection> */}
+       
+        <div className="addonPriceSection">
+            <div className="addonPrice section card border-info">
             <h5 className="price-info">Car Price : <span className="price-info-val">₹{currentVehicle.price}</span></h5>
            {!isBuyCar && <>
             <h5 className="price-info">Addons : <span className="price-info-val">₹{addonsPrice}</span></h5>
@@ -387,8 +393,9 @@ function Editor(props) {
            </>} 
           </div>
           <button className="btn btn-lg btn-success" style={{width:"100%"}}>Checkout</button>
-          {isBuyCar && <button className="btn btn-lg btn-light" style={{width:"100%"}}>Customize Your Car</button>}
-        </>
+        </div>
+          
+       
       
     </div>
   );
