@@ -66,8 +66,7 @@ input[type='checkbox'] {
 select {
     background: #444;
     background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.4));
-    color: #c000cd;
-    text-shadow: 0px 0px 15px rgb(255, 137, 255);
+    color: #828282;
 }
 select > option {
     background: #444;
