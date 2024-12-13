@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Arrow, BtnContainer, NeonNextButton, StartButton } from "../styles";
+import { Arrow, BtnContainer, LeftArrow, NeonNextButton, RightArrow, StartButton } from "../styles";
 
 
 const NeonButtonWithSound = ({
@@ -41,10 +41,10 @@ const NeonButtonWithSound = ({
       {!showButton ? (
         <BtnContainer>
           <NeonNextButton onClick={handlePrevButtonClick}>
-            <Arrow>← </Arrow>Prev
+            <LeftArrow>←</LeftArrow>Prev
           </NeonNextButton>
           <NeonNextButton onClick={handleButtonClick}>
-            Next<Arrow>→</Arrow>
+            Next<RightArrow>→</RightArrow>
           </NeonNextButton>
         </BtnContainer>
       ) : (

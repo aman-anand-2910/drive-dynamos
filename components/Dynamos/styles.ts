@@ -68,8 +68,8 @@ export const SliderContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #111;
-  padding: 20px;
+  background-color: #111111a3;
+  padding: 50px;
   border-radius: 10px;
   box-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
   max-width: 600px;
@@ -162,8 +162,19 @@ export const NeonNextButton = styled.div`
   }
 `;
 
-export const Arrow = styled.span`
-  margin-left: 10px;
+export const LeftArrow = styled.span`
+  margin: 0 10px;
+  font-weight: bold;
+  color: #0ff;
+  text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #00f, 0 0 30px #00f;
+  transition: transform 0.3s ease-in-out;
+
+  ${NeonNextButton}:hover & {
+    transform: translateX(-5px); /* Slide the arrow on hover */
+  }
+`;
+export const RightArrow = styled.span`
+  margin: 0 10px;
   font-weight: bold;
   color: #0ff;
   text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #00f, 0 0 30px #00f;
@@ -180,7 +191,7 @@ export const NeonCarouselContainer = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  width: 80%;
+  width: 65%;
   max-width: 600px;
   margin: auto;
   overflow: hidden;
@@ -197,6 +208,7 @@ export const NeonImageContainer = styled.div`
 export const NeonImage = styled.img<{ scale?: boolean }>`
   width: 100%;
   height: auto;
+  max-height: 300px;
   border-radius: 10px;
   box-shadow: 0 0 10px #0ff;
   transform: ${({ scale }) => (scale ? "scale(3)" : "scale(0.8)")};

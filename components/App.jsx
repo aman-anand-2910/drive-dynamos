@@ -10,6 +10,8 @@ import Header from "./Header";
 
 function Customize({ flag }) {
 
+  const [regNo, setRegNo] = useState("");
+  const [submitRegNo, setSubmitRegNo] = useState(false);
   // Saved vehicles.
   const [savedVehicles, setSavedVehicles] = useState(() => {
     const localStorageVehicles = localStorage.getItem("savedVehicles");
@@ -19,6 +21,12 @@ function Customize({ flag }) {
   });
 
   const [addonsPriceConfig, setAddonsPriceConfig] = useState({});
+
+  useEffect(()=>{
+    setRegNo("");
+  },[])
+
+  
 
   // On saved Vehicles update.
   useEffect(() => {
@@ -80,6 +88,18 @@ function Customize({ flag }) {
       window.history.replaceState({}, "", window.location.pathname);
     }
   }, []);
+
+  if(submitRegNo === false && !flag){
+    return <>
+        <div id="carRegistrationForm">
+            <fieldset>
+                <label for="exampleInputEmail1" class="form-label mt-6" style={{color: "#32fbe2"}}>Enter Vehicle Registration Number</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" value={regNo} onChange={(e)=> setRegNo(e.target.value)}  placeholder="Registration Number"/>
+                <button class="btn btn-light btn-lg" onClick={()=>{setSubmitRegNo(true)}}>Submit</button>
+            </fieldset>
+        </div>
+    </>
+  }
 
   return (
     <div className="App">

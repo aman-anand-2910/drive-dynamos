@@ -63,7 +63,7 @@ const Dynamoscomponent = () => {
   useEffect(() => {
     if (flow === 5) {
       {
-        window.location.href = "/customize";
+        window.location.href = "/buy-car";
       }
     }
   }, [flow])
