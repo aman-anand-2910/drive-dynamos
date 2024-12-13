@@ -201,9 +201,9 @@ input[type='color']::-webkit-color-swatch {
 /* editor */
 #editor {
     position: absolute;
-    top: 0;
+    top: 64px;
     width: 100%;
-    height: 100%;
+    height: 94%;
     overflow-y: auto;
     overflow-x: hidden;
     background: rgba(0, 0, 0, 0.8);
@@ -255,9 +255,10 @@ input[type='color']::-webkit-color-swatch {
 @media (min-aspect-ratio: 5/4) {
     #editor {
         width: 300px;
-        top: 0;
+        top: 60px;
         left: -240px;
         z-index: 9;
+        /* padding-bottom: 100px; */
     }
     #editor.visible {
         left: 0;
@@ -498,7 +499,7 @@ input[type='color']::-webkit-color-swatch {
 
 .addonPriceSection{
     position: sticky;
-    bottom:0;
+    bottom:2px;
     width: 300px;
     padding: 5px;
     background-color: #2a2828;

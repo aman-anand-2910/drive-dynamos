@@ -17,6 +17,9 @@ function Editor(props) {
     setVehicle,
     addonsPriceConfig,
     isBuyCar,
+    setAddonsPriceConfig,
+    setCameraAutoRotate,
+    cameraAutoRotate,
   } = props;
   const addonsPrice = Object.values(addonsPriceConfig).reduce((total,val)=>val.price+total,0);
 
@@ -163,6 +166,11 @@ function Editor(props) {
         defaultActive={true}
       >
         {/* Vehicle */}
+
+        <div class="section form-switch" style={{margin: "10px"}}>
+                      <input class="form-check-input" type="checkbox" id='camera-autorotate' checked={cameraAutoRotate} onChange={(e) => setCameraAutoRotate(e.target.checked)}/>
+                      <label class="form-check-label" for="flexSwitchCheckChecked">360 View</label>
+        </div>   
         <div className="field field-vehicle">
           <label>Model</label>
           <GroupedSelect
@@ -374,8 +382,7 @@ function Editor(props) {
           {/* <div className='field field-camera-autorotate'>
                     <input type='checkbox' id='camera-autorotate' checked={cameraAutoRotate} onChange={(e) => setCameraAutoRotate(e.target.checked)} />
                     <label htmlFor='camera-autorotate'>Auto Rotate</label>
-                </div> */}
-                         
+                </div> */}             
             {/* </EditorSection> */}
        
         <div className="addonPriceSection">
