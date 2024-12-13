@@ -9,7 +9,6 @@ import SpecsGrid from "./SpecsGrid";
 import Header from "./Header";
 
 function Customize({ flag }) {
-
   const [regNo, setRegNo] = useState("");
   const [submitRegNo, setSubmitRegNo] = useState(false);
   // Saved vehicles.
@@ -22,11 +21,9 @@ function Customize({ flag }) {
 
   const [addonsPriceConfig, setAddonsPriceConfig] = useState({});
 
-  useEffect(()=>{
+  useEffect(() => {
     setRegNo("");
-  },[])
-
-  
+  }, []);
 
   // On saved Vehicles update.
   useEffect(() => {
@@ -41,29 +38,34 @@ function Customize({ flag }) {
       : vehicleConfigs.defaults;
   };
 
-const [currentVehicle, setVehicle] = useReducer((currentVehicle, newState) => ({ ...currentVehicle, ...newState}), defaultVehicleConfig());
+  const [currentVehicle, setVehicle] = useReducer(
+    (currentVehicle, newState) => ({ ...currentVehicle, ...newState }),
+    defaultVehicleConfig()
+  );
 
-useEffect(()=>{
-    console.log(currentVehicle)
+  useEffect(() => {
+    console.log(currentVehicle);
     const selectedRim = currentVehicle.rim;
     const selectedTyre = currentVehicle.tire;
     let rimPrice = 0;
     let tyrePrice = 0;
-    if(selectedRim === vehicleConfigs.vehicles[currentVehicle.id].rim) rimPrice = 0;
-    else{
-        rimPrice = vehicleConfigs.wheels.rims[selectedRim].price;
+    if (selectedRim === vehicleConfigs.vehicles[currentVehicle.id].rim)
+      rimPrice = 0;
+    else {
+      rimPrice = vehicleConfigs.wheels.rims[selectedRim].price;
     }
-    if(selectedTyre === vehicleConfigs.vehicles[currentVehicle.id].tire) tyrePrice = 0;
-    else{
-        tyrePrice = vehicleConfigs.wheels.tires[selectedTyre].price;
+    if (selectedTyre === vehicleConfigs.vehicles[currentVehicle.id].tire)
+      tyrePrice = 0;
+    else {
+      tyrePrice = vehicleConfigs.wheels.tires[selectedTyre].price;
     }
-    const addonPriceCopy = {...addonsPriceConfig};
+    const addonPriceCopy = { ...addonsPriceConfig };
     addonPriceCopy.rim = vehicleConfigs.wheels.rims[selectedRim];
     addonPriceCopy.tire = vehicleConfigs.wheels.tires[selectedTyre];
     addonPriceCopy.rim.price = rimPrice;
     addonPriceCopy.tire.price = tyrePrice;
     setAddonsPriceConfig(addonPriceCopy);
-},[currentVehicle])
+  }, [currentVehicle]);
 
   // Camera.
   const [cameraAutoRotate, setCameraAutoRotate] = useState(false);
@@ -85,22 +87,49 @@ useEffect(()=>{
     }
   }, []);
 
-  if(submitRegNo === false && !flag){
-    return <>
-        <div id="carRegistrationForm">
+  const urlParams = new URLSearchParams(window.location.search);
+  const isNewCar = urlParams.get("isNewCar");
+
+  if (submitRegNo === false && !flag) {
+    if (!isNewCar) {
+      return (
+        <>
+          <div id="carRegistrationForm">
             <fieldset>
-                <label for="exampleInputEmail1" className="form-label mt-6" style={{color: "#32fbe2"}}>Enter Vehicle Registration Number</label>
-                <input type="text" className="form-control" id="exampleInputEmail1" value={regNo} onChange={(e)=> setRegNo(e.target.value)}  placeholder="Registration Number"/>
-                <button className="btn btn-light btn-lg" onClick={()=>{setSubmitRegNo(true)}}>Submit</button>
+              <label
+                for="exampleInputEmail1"
+                className="form-label mt-6"
+                style={{ color: "#32fbe2" }}
+              >
+                Enter Vehicle Registration Number
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="exampleInputEmail1"
+                value={regNo}
+                onChange={(e) => setRegNo(e.target.value)}
+                placeholder="Registration Number"
+              />
+              <button
+                className="btn btn-light btn-lg"
+                onClick={() => {
+                  setSubmitRegNo(true);
+                }}
+              >
+                Submit
+              </button>
             </fieldset>
-        </div>
-    </>
+          </div>
+        </>
+      );
+    }
   }
 
   return (
     <div className="App">
       <div>
-        <Header/>
+        <Header />
         <Canvas
           currentVehicle={currentVehicle}
           setVehicle={setVehicle}
@@ -114,7 +143,7 @@ useEffect(()=>{
           isActive={true}
           currentVehicle={currentVehicle}
           setVehicle={setVehicle}
-        cameraAutoRotate={cameraAutoRotate}
+          cameraAutoRotate={cameraAutoRotate}
           setCameraAutoRotate={setCameraAutoRotate}
         />
       </div>
@@ -125,7 +154,7 @@ useEffect(()=>{
             zIndex: 10,
             position: "absolute",
             top: "65%",
-            right:0
+            right: 0,
           }}
         >
           <SpecsGrid />
