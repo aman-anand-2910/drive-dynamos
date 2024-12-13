@@ -155,10 +155,7 @@ function Editor(props) {
   };
 
   return (
-    <div
-      id="editor"
-      className={isActive ? "visible" : ""}
-    >
+    <div id="editor" className={isActive ? "visible" : ""}>
       {/* Vehicle */}
       <EditorSection
         title="Vehicle"
@@ -167,10 +164,18 @@ function Editor(props) {
       >
         {/* Vehicle */}
 
-        <div className="section form-switch" style={{margin: "10px"}}>
-                      <input className="form-check-input" type="checkbox" id='camera-autorotate' checked={cameraAutoRotate} onChange={(e) => setCameraAutoRotate(e.target.checked)}/>
-                      <label className="form-check-label" for="flexSwitchCheckChecked">360 View</label>
-        </div>   
+        <div className="section form-switch" style={{ margin: "10px" }}>
+          <input
+            className="form-check-input"
+            type="checkbox"
+            id="camera-autorotate"
+            checked={cameraAutoRotate}
+            onChange={(e) => setCameraAutoRotate(e.target.checked)}
+          />
+          <label className="form-check-label" for="flexSwitchCheckChecked">
+            360 View
+          </label>
+        </div>
         <div className="field field-vehicle">
           <label>Model</label>
           <GroupedSelect
@@ -178,10 +183,10 @@ function Editor(props) {
             itemList={vehicleConfigs.vehicles}
             groupBy={"make"}
             onChange={(e) => {
-                const selectedId = e.target.value;
-                const selectedVehicle = vehicleConfigs.vehicles[selectedId];
-                const updatedPrice = selectedVehicle?.price || 0; // Fetch the new price
-                setVehicle({ id: selectedId, price: updatedPrice });
+              const selectedId = e.target.value;
+              const selectedVehicle = vehicleConfigs.vehicles[selectedId];
+              const updatedPrice = selectedVehicle?.price || 0; // Fetch the new price
+              setVehicle({ id: selectedId, price: updatedPrice });
             }}
           />
         </div>
@@ -337,6 +342,37 @@ function Editor(props) {
             </div>
           </EditorSection>
 
+          <EditorSection title="Coatings" icon={<TireIcon className="icon" />}>
+            <div className="field field-tire-type">
+              {/* Coating */}
+              <div className="field field-tire-type">
+                <GroupedImageSelect
+                  value={currentVehicle.coating}
+                  itemList={vehicleConfigs.Coating}
+                  groupBy={"make"}
+                  onChange={(e) => setVehicle({ coating: e.target.value })}
+                />
+              </div>
+            </div>
+          </EditorSection>
+
+          <EditorSection
+            title="Headlights"
+            icon={<TireIcon className="icon" />}
+          >
+            <div className="field field-tire-type">
+              {/* Headlight */}
+              <div className="field field-tire-type">
+                <GroupedImageSelect
+                  value={currentVehicle.Headlight}
+                  itemList={vehicleConfigs.Headlight}
+                  groupBy={"make"}
+                  onChange={(e) => setVehicle({ Headlight: e.target.value })}
+                />
+              </div>
+            </div>
+          </EditorSection>
+
           {addonsExist() && (
             <EditorSection title="Addons" icon={<ToolIcon className="icon" />}>
               {Object.keys(
@@ -380,29 +416,41 @@ function Editor(props) {
               ))}
             </EditorSection>
           )}
-        </>)}   
-          {/* Scene */}
-          {/* <EditorSection title='Options' icon={<GearIcon className='icon' />}> */}
-          {/* Auto Rotate */}
-          {/* <div className='field field-camera-autorotate'>
+        </>
+      )}
+      {/* Scene */}
+      {/* <EditorSection title='Options' icon={<GearIcon className='icon' />}> */}
+      {/* Auto Rotate */}
+      {/* <div className='field field-camera-autorotate'>
                     <input type='checkbox' id='camera-autorotate' checked={cameraAutoRotate} onChange={(e) => setCameraAutoRotate(e.target.checked)} />
                     <label htmlFor='camera-autorotate'>Auto Rotate</label>
-                </div> */}             
-            {/* </EditorSection> */}
-       
-        <div className="addonPriceSection">
-            <div className="addonPrice section card border-info">
-            <h5 className="price-info">Car Price : <span className="price-info-val">₹{currentVehicle.price}</span></h5>
-           {!isBuyCar && <>
-            <h5 className="price-info">Addons : <span className="price-info-val">₹{addonsPrice}</span></h5>
-            <h3 className="price-info">Total : <span className="price-info-val">₹{parseInt(currentVehicle.price) + parseInt(addonsPrice)}</span></h3>
-           </>} 
-          </div>
-          <button className="btn btn-lg btn-success" style={{width:"100%"}}>Checkout</button>
+                </div> */}
+      {/* </EditorSection> */}
+
+      <div className="addonPriceSection">
+        <div className="addonPrice section card border-info">
+          <h5 className="price-info">
+            Car Price :{" "}
+            <span className="price-info-val">₹{currentVehicle.price}</span>
+          </h5>
+          {!isBuyCar && (
+            <>
+              <h5 className="price-info">
+                Addons : <span className="price-info-val">₹{addonsPrice}</span>
+              </h5>
+              <h3 className="price-info">
+                Total :{" "}
+                <span className="price-info-val">
+                  ₹{parseInt(currentVehicle.price) + parseInt(addonsPrice)}
+                </span>
+              </h3>
+            </>
+          )}
         </div>
-          
-       
-      
+        <button className="btn btn-lg btn-success" style={{ width: "100%" }}>
+          Checkout
+        </button>
+      </div>
     </div>
   );
 }
