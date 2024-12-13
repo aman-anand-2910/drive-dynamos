@@ -17,6 +17,7 @@ function Editor(props) {
     setVehicle,
     addonsPriceConfig,
     isBuyCar,
+    isNewCar,
     setAddonsPriceConfig,
     setCameraAutoRotate,
     cameraAutoRotate,
@@ -429,10 +430,14 @@ function Editor(props) {
 
       <div className="addonPriceSection">
         <div className="addonPrice section card border-info">
-          <h5 className="price-info">
+          {
+            isNewCar && 
+            (<h5 className="price-info">
             Car Price :{" "}
             <span className="price-info-val">₹{currentVehicle.price}</span>
-          </h5>
+          </h5>)
+          }
+          
           {!isBuyCar && (
             <>
               <h5 className="price-info">
@@ -441,7 +446,7 @@ function Editor(props) {
               <h3 className="price-info">
                 Total :{" "}
                 <span className="price-info-val">
-                  ₹{parseInt(currentVehicle.price) + parseInt(addonsPrice)}
+                  ₹{isNewCar ? parseInt(currentVehicle.price) + parseInt(addonsPrice) : parseInt(addonsPrice)}
                 </span>
               </h3>
             </>

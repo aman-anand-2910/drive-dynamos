@@ -139,6 +139,7 @@ function Customize({ flag }) {
         <Editor
           addonsPriceConfig={addonsPriceConfig}
           isBuyCar={flag}
+          isNewCar={isNewCar}
           setAddonsPriceConfig={setAddonsPriceConfig}
           isActive={true}
           currentVehicle={currentVehicle}
