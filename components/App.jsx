@@ -62,7 +62,7 @@ function Customize({ flag }) {
 );
 
   // Camera.
-  const [cameraAutoRotate, setCameraAutoRotate] = useState(true);
+  const [cameraAutoRotate, setCameraAutoRotate] = useState(false);
 
   // Run once.
   useEffect(() => {
@@ -98,7 +98,8 @@ function Customize({ flag }) {
           isActive={true}
           currentVehicle={currentVehicle}
           setVehicle={setVehicle}
-          cameraAutoRotate={cameraAutoRotate}
+        cameraAutoRotate={cameraAutoRotate}
+          setCameraAutoRotate={setCameraAutoRotate}
         />
       </div>
       {flag && (

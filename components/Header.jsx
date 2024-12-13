@@ -12,11 +12,13 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark" style={{zIndex:999}}>
       <div className="container-fluid">
-        <Link to="/" className="navbar-brand">
-          Home
-        </Link>
+         <div className="d-flex">
+          <a href = "/" className="navbar-brand">
+            Home
+          </a>
+        </div>
         <div className="d-flex">
-          <button className="btn btn-secondary" onClick={()=>{window.location.href = targetRoute;}}>
+          <button className="btn btn-lg btn-primary" onClick={()=>{window.location.href = targetRoute;}}>
             {buttonLabel}
           </button>
         </div>
