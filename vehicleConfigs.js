@@ -97,6 +97,8 @@ const vehicleConfigs = {
       },
     ],
     colors: [
+      {name: "Blood Red",
+        hex: "#B91818"},
       {
         name: "Glacier White",
         hex: "#F8F8F8",
@@ -231,7 +233,8 @@ const vehicleConfigs = {
           value: "21",
         },
       ],
-      colors: [
+      colors: [{name: "Blood Red",
+        hex: "#B91818"},
         {
           name: "Aurora Violet",
           hex: "#A020F0",
@@ -313,7 +316,7 @@ const vehicleConfigs = {
           },
         },
       },
-      price: 1000000,
+      price: 1213500,
       specs: [
         {
           name: "Power",
@@ -357,7 +360,8 @@ const vehicleConfigs = {
           value: "21",
         },
       ],
-      colors: [
+      colors: [{name: "Blood Red",
+        hex: "#B91818"},
         {
           name: "Ascari Blue",
           hex: "#0053A0",
@@ -483,7 +487,8 @@ const vehicleConfigs = {
           value: "21",
         },
       ],
-      colors: [
+      colors: [{name: "Blood Red",
+        hex: "#B91818"},
         {
           name: "Nardo Grey",
           hex: "#789ABC",
@@ -616,7 +621,8 @@ const vehicleConfigs = {
           value: "21",
         },
       ],
-      colors: [
+      colors: [{name: "Blood Red",
+        hex: "#B91818"},
         {
           name: "Aurora Violet",
           hex: "#A020F0",
@@ -740,7 +746,8 @@ const vehicleConfigs = {
           value: "21",
         },
       ],
-      colors: [
+      colors: [{name: "Blood Red",
+        hex: "#B91818"},
         {
           name: "Glacier White",
           hex: "#F8F8F8",
@@ -866,7 +873,8 @@ const vehicleConfigs = {
           value: "21",
         },
       ],
-      colors: [
+      colors: [{name: "Blood Red",
+        hex: "#B91818"},
         {
           name: "Glacier White",
           hex: "#F8F8F8",
@@ -992,7 +1000,8 @@ const vehicleConfigs = {
           value: "21",
         },
       ],
-      colors: [
+      colors: [{name: "Blood Red",
+        hex: "#B91818"},
         {
           name: "Quantum Grey",
           hex: "#4A4A4A",
@@ -1118,7 +1127,8 @@ const vehicleConfigs = {
           value: "21",
         },
       ],
-      colors: [
+      colors: [{name: "Blood Red",
+        hex: "#B91818"},
         {
           name: "Ibis White",
           hex: "#FFFFFF",
@@ -1244,7 +1254,8 @@ const vehicleConfigs = {
           value: "21",
         },
       ],
-      colors: [
+      colors: [{name: "Blood Red",
+        hex: "#B91818"},
         {
           name: "Tango Red",
           hex: "#FF4500",
@@ -1371,7 +1382,8 @@ const vehicleConfigs = {
           value: "21",
         },
       ],
-      colors: [
+      colors: [{name: "Blood Red",
+        hex: "#B91818"},
         {
           name: "Aurora Violet",
           hex: "#A020F0",
