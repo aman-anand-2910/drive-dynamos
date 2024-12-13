@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+
 * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -16,10 +18,11 @@ body {
     font-weight: 400;
     line-height: normal;
     color: #333;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
+    /* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', sans-serif;
     -webkit-text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    -moz-osx-font-smoothing: grayscale; */
+    font-family: "Orbitron", sans-serif;
 }
 
 /* forms */
@@ -34,6 +37,8 @@ body {
 .field label {
     display: block;
     margin: 0 0 10px 0;
+    color: #00ff0d;
+    text-shadow: 0px 0px 15px rgb(0, 255, 255);
 }
 
 /* defaults */
@@ -61,7 +66,8 @@ input[type='checkbox'] {
 select {
     background: #444;
     background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.4));
-    color: #aaa;
+    color: #c000cd;
+    text-shadow: 0px 0px 15px rgb(255, 137, 255);
 }
 select > option {
     background: #444;
@@ -210,7 +216,8 @@ input[type='color']::-webkit-color-swatch {
     box-shadow: 0 0 1px #aaa;
     -webkit-box-shadow: 0 0 1px #aaa;
     transition: 0.5s;
-    color: #ccc;
+    color: #00a8ba;
+    text-shadow: 0px 0px 15px rgb(0, 255, 255);
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
 }
@@ -223,7 +230,7 @@ input[type='color']::-webkit-color-swatch {
     background: #1a1a1a;
     background: rgba(0, 0, 0, 0.6);
     text-transform: uppercase;
-    font-size: 0.875em;
+    font-size: 1em;
     font-weight: bold;
     cursor: pointer;
 }
@@ -258,7 +265,6 @@ input[type='color']::-webkit-color-swatch {
         top: 60px;
         left: -240px;
         z-index: 9;
-        /* padding-bottom: 100px; */
     }
     #editor.visible {
         left: 0;
